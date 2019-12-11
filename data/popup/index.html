@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Domain Name Registration Data Lookup</title>
+  <link rel="stylesheet" type="text/css" href="index.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body data-ready="false">
+<header id="search">
+  <form>
+    <input type="search" required autofocus placeholder="search query" autocomplete id="searchbox">
+    <input type="submit" value="">
+  </form>
+  </header>
+  <section id="dnr">
+    <h1>Domain Information</h1>
+    <div>
+      <label><b>Name:</b> <span id="name"></span></label>
+      <label><b>Registry Domain ID:</b> <span id="id"></span></label>
+      <b>Domain Status:</b>
+      <ul id="status"></ul>
+      <b>Nameservers:</b>
+      <ul id="nameservers"></ul>
+      <b>Dates:</b>
+      <ul>
+        <li><label><b>Expiration:</b> <span id="expiration"></span></label></li>
+        <li><label><b>Created:</b> <span id="registration"></span></label></li>
+      </ul>
+    </div>
+    <h1>Contact Information</h1>
+    <div>
+      <b>Registrar:</b>
+      <ul>
+        <li data-visible="false" id="registrar-organization"><b>Organization:</b> <span></span></li>
+        <li data-visible="false" id="registrar-id"><b>IANA ID:</b> <span></span></li>
+        <li data-visible="false" id="registrar-address"><b>Mailing Address:</b> <span></span></li>
+        <li data-visible="false" id="registrar-email"><b>Contact Email:</b> <span></span></li>
+        <li data-visible="false" id="registrar-phone"><b>Contact Phone:</b> <span></span></li>
+      </ul>
+      <b>Technical:</b>
+      <ul>
+        <li data-visible="false" id="technical-organization"><b>Organization:</b> <span></span></li>
+        <li data-visible="false" id="technical-id"><b>IANA ID:</b> <span></span></li>
+        <li data-visible="false" id="technical-address"><b>Mailing Address:</b> <span></span></li>
+        <li data-visible="false" id="technical-email"><b>Contact Email:</b> <span></span></li>
+        <li data-visible="false" id="technical-phone"><b>Contact Phone:</b> <span></span></li>
+      </ul>
+      <b>Administrative:</b>
+      <ul>
+        <li data-visible="false" id="administrative-organization"><b>Organization:</b> <span></span></li>
+        <li data-visible="false" id="administrative-id"><b>IANA ID:</b> <span></span></li>
+        <li data-visible="false" id="administrative-address"><b>Mailing Address:</b> <span></span></li>
+        <li data-visible="false" id="administrative-email"><b>Contact Email:</b> <span></span></li>
+        <li data-visible="false" id="administrative-phone"><b>Contact Phone:</b> <span></span></li>
+      </ul>
+      <b>Abuse:</b>
+      <ul>
+        <li data-visible="false" id="abuse-organization"><b>Organization:</b> <span></span></li>
+        <li data-visible="false" id="abuse-id"><b>IANA ID:</b> <span></span></li>
+        <li data-visible="false" id="abuse-address"><b>Mailing Address:</b> <span></span></li>
+        <li data-visible="false" id="abuse-email"><b>Contact Email:</b> <span></span></li>
+        <li data-visible="false" id="abuse-phone"><b>Contact Phone:</b> <span></span></li>
+      </ul>
+    </div>
+    <h1>DNSSEC Information</h1>
+    <div>
+      <label><b>Delegation Signed:</b> <span id="delegation-signed"></span></label>
+    </div>
+  </section>
+  <script type="text/javascript" src="dnr/tld.js"></script>
+  <script type="text/javascript" src="dnr/dnr.js"></script>
+  <script type="text/javascript" src="index.js"></script>
+</body>
+</html>
