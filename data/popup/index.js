@@ -1,8 +1,20 @@
-/* globals dnr */
-
+/* globals dnr, whois */
 'use strict';
+document.body.dataset.top = window.top === window;
 
-const build = link => dnr.guess(link).then(() => {
+const resize = () => {
+  if (window.top !== window) {
+    requestAnimationFrame(() => {
+      const height = document.body.getBoundingClientRect().height;
+      window.top.document.getElementById('app').style.height = (30 + height) + 'px';
+    });
+  }
+};
+
+const build = link => dnr.guess(link).catch(e => {
+  console.warn('dnr.js failed', e);
+  return whois.guess(link);
+}).then(dnr => {
   if (document.body.dataset.ready === 'true') {
     return;
   }
@@ -38,6 +50,7 @@ const build = link => dnr.guess(link).then(() => {
   document.getElementById('delegation-signed').textContent = dnr.dns()['delegation-signed'] ? 'Signed' : 'Unsigned';
 
   document.body.dataset.ready = true;
+  resize();
 }).catch(e => {
   document.body.dataset.ready = true;
   console.error(e);
@@ -48,7 +61,8 @@ const build = link => dnr.guess(link).then(() => {
   const search = document.querySelector('#search [type=search]');
   document.addEventListener('submit', e => {
     e.preventDefault();
-    location.replace('?query=' + encodeURIComponent(search.value));
+    top.history.pushState({}, '', '?query=' + encodeURIComponent(search.value));
+    location.reload();
   });
   search.addEventListener('search', () => {
     if (search.value === '') {
@@ -56,7 +70,7 @@ const build = link => dnr.guess(link).then(() => {
     }
   });
 
-  const args = new URLSearchParams(location.search);
+  const args = new URLSearchParams(top.location.search);
   if (args.has('query')) {
     search.value = args.get('query');
     build(args.get('query'));
@@ -72,10 +86,13 @@ const build = link => dnr.guess(link).then(() => {
       }
       else {
         document.body.dataset.ready = true;
+        resize();
       }
-    })
+    });
   }
   else {
     document.body.dataset.ready = true;
+    resize();
   }
 }
+resize();

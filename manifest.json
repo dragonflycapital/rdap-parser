@@ -1,6 +1,6 @@
 {
   "manifest_version": 2,
-  "version": "0.1.0",
+  "version": "0.1.1",
   "name": "Domain Name Registration Data Lookup (WHOIS)",
   "description": "This tool gives you the ability to look up the registration data for domain names",
   "permissions": [
@@ -10,8 +10,9 @@
     "*://rdap.verisign.com/com/*",
     "*://rdap.gandi.net/domain/*",
     "*://rdap.register.com/rdap/*"
-   ],
-   "background": {
+  ],
+  "homepage_url": "https://add0n.com/whois.html",
+  "background": {
     "persistent": false,
     "scripts": [
       "background.js"

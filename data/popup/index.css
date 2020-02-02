@@ -1,8 +1,11 @@
 body {
   font-size: 13px;
   font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
-  min-width: 500px;
 }
+body[data-top=true] {
+  width: 500px;
+}
+
 body[data-ready="false"]::before {
   content: '';
   position: absolute;
@@ -11,6 +14,9 @@ body[data-ready="false"]::before {
   width: 100vw;
   height: 100vh;
   background: rgba(0, 0, 0, 0.5) url('loader.svg') center center no-repeat;
+}
+body[data-ready="false"][data-top="false"]::before {
+  background-position: top 200px center;
 }
 h1 {
   background-color: #6c757d;
@@ -33,13 +39,12 @@ h1 {
   padding: 0 40px 0 8px;
 }
 
+#search button,
 #search input,
 #search select {
   outline: none;
 }
-#search input[type=submit] {
-  background: url(search.svg) center center no-repeat;
-  background-size: 24px;
+#search button[type=submit] {
   border: none;
   padding: 0;
   width: 32px;
@@ -48,6 +53,7 @@ h1 {
   right: 0;
   top: 0;
   cursor: pointer;
+  background-color: transparent;
 }
 #dnr label {
   display: block;

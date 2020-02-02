@@ -1,2 +1,5 @@
 tld.js
   https://github.com/ray-lothian/tld.js/releases/tag/0.1.0
+
+dns.json
+  https://data.iana.org/rdap/dns.json

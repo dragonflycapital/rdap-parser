@@ -34,6 +34,8 @@ const dnr = {
       }).then(a => a && this.entries.push(a)).catch(() => console.warn('Failed to fetch alt ' + o));
     }));
     this.progress('alts_resolves', alts);
+
+    return this;
   },
   clean(a) {
     return a.filter((s, i, l) => s && l.indexOf(s) === i);
@@ -80,9 +82,11 @@ const dnr = {
       }
       return p;
     }, []);
+    const oe = events.filter(e => e.eventAction === 'expiration').shift();
+    const or = events.filter(e => e.eventAction === 'registration').shift();
     return {
-      'expiration': events.filter(e => e.eventAction === 'expiration').shift().eventDate,
-      'registration': events.filter(e => e.eventAction === 'registration').shift().eventDate
+      'expiration': oe ? oe.eventDate : 'unknown',
+      'registration': or ? or.eventDate : 'unknown'
     };
   },
   contact() {
