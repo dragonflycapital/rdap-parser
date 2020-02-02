@@ -11,7 +11,7 @@ const dnr = {
     const suffix = tld.getPublicSuffix(link);
     const service = dns.services.filter(o => o[0].indexOf(suffix) !== -1).shift();
     if (!service) {
-      throw Error(`"${suffix}" is not a supported domain suffix`);
+      throw Error(`"${suffix}" is not a DNR supported domain suffix`);
     }
     const domain = tld.getDomain(link);
     const primary = service[1] + 'domain/' + domain;

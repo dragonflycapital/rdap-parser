@@ -1,6 +1,6 @@
 /* globals dnr, whois */
 'use strict';
-document.body.dataset.top = window.top === window;
+document.body.dataset.top = window.top === window && location.href.indexOf('pwa') === -1;
 
 const resize = () => {
   if (window.top !== window) {
@@ -13,7 +13,9 @@ const resize = () => {
 
 const build = link => dnr.guess(link).catch(e => {
   console.warn('dnr.js failed', e);
-  return whois.guess(link);
+  return whois.guess(link, e.message).catch(() => {
+    throw e;
+  });
 }).then(dnr => {
   if (document.body.dataset.ready === 'true') {
     return;
@@ -24,6 +26,7 @@ const build = link => dnr.guess(link).catch(e => {
     const a = document.createElement('a');
     a.textContent = msg;
     a.href = href;
+    a.rel = 'noopener';
     a.target = '_blank';
     const li = document.createElement('li');
     li.appendChild(a);
@@ -75,7 +78,7 @@ const build = link => dnr.guess(link).catch(e => {
     search.value = args.get('query');
     build(args.get('query'));
   }
-  else if (chrome && chrome.tabs) {
+  else if (chrome && chrome.tabs && chrome.tabs.query) {
     chrome.tabs.query({
       active: true,
       currentWindow: true
