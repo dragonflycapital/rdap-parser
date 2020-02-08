@@ -6,7 +6,7 @@ const resize = () => {
   if (window.top !== window) {
     requestAnimationFrame(() => {
       const height = document.body.getBoundingClientRect().height;
-      window.top.document.getElementById('app').style.height = (30 + height) + 'px';
+      window.top.document.getElementById('pwa').style.height = (30 + height) + 'px';
     });
   }
 };
